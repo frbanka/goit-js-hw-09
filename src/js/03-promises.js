@@ -1,8 +1,8 @@
 const firstDelay = document.querySelector('[name="delay"]');
 const stepDelay = document.querySelector('[name="step"]');
 const delayAmount = document.querySelector('[name="amount"]');
-const subBtn = document.querySelector('.submit');
-subBtn.addEventListener('click', submitPromise());
+const input = document.querySelector('.form');
+input.addEventListener('submit', submitPromise);
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
@@ -17,8 +17,8 @@ function createPromise(position, delay) {
   });
 }
 
-function submitPromise(e) {
-  e.preventDefault();
+function submitPromise(event) {
+  event.preventDefault();
   let delay = firstDelay.valueAsNumber;
   let step = stepDelay.valueAsNumber;
   let amount = delayAmount.valueAsNumber;
