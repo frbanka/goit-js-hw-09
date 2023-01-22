@@ -57,31 +57,6 @@ const options = {
 };
 flatpickr('#datetime-picker', options);
 
-function startTimer() {
-  dateTimer = setInterval(() => {
-    const currentTime = Date.now();
-    const countdownTime = userDate - currentTime;
-
-    startButton.setAttribute('disabled', true);
-    dateInput.setAttribute('disabled', true);
-
-    if (countdownTime < 1000) {
-      clearInterval(dateTimer);
-      startButton.removeAttribute('disabled');
-    }
-    const { days, hours, minutes, seconds } = convertMs(countdownTime);
-
-    updateTime({ days, hours, minutes, seconds });
-  }, 1000);
-}
-
-function updateTime({ days, hours, minutes, seconds }) {
-  daysField.textContent = days;
-  hoursField.textContent = hours;
-  minutesField.textContent = minutes;
-  secondsField.textContent = seconds;
-}
-
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -105,4 +80,29 @@ function convertMs(ms) {
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
+}
+
+function startTimer() {
+  dateTimer = setInterval(() => {
+    const currentTime = Date.now();
+    const countdownTime = userDate - currentTime;
+
+    startButton.setAttribute('disabled', true);
+    dateInput.setAttribute('disabled', true);
+
+    if (countdownTime < 1000) {
+      clearInterval(dateTimer);
+      startButton.removeAttribute('disabled');
+    }
+    const { days, hours, minutes, seconds } = convertMs(countdownTime);
+
+    updateTime({ days, hours, minutes, seconds });
+  }, 1000);
+}
+
+function updateTime({ days, hours, minutes, seconds }) {
+  daysField.textContent = days;
+  hoursField.textContent = hours;
+  minutesField.textContent = minutes;
+  secondsField.textContent = seconds;
 }
